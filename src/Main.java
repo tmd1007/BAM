@@ -6,7 +6,16 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        String cmd = sc.nextLine();
+        while (true) {
+            System.out.print("cmd)");
+            String cmd = sc.nextLine();
+
+            if (cmd.equals("exit")) {
+                break;
+            }
+        }
+
+
 
         System.out.println("== 프로그램 끝 ==");
 
