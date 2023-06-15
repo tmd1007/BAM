@@ -8,8 +8,6 @@ public class Main {
 
         String cmd = sc.nextLine();
 
-        System.out.println(cmd);
-
         System.out.println("== 프로그램 끝 ==");
 
         sc.close();
