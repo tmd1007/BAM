@@ -59,15 +59,7 @@ public class App {
             } else if (cmd.startsWith("detail ")) {
                 String[] arr = cmd.split(" ");
                 int id = Integer.parseInt(arr[1]);
-                Article foundArticle = null;
-
-                for (int i = 0; i < list.size(); i++) {
-                    Article article = list.get(i);
-                    if (article.id == id) {
-                        foundArticle = article;
-                        break;
-                    }
-                }
+                Article foundArticle = getArticleById(id);
 
                 if (foundArticle == null) {
                     System.out.printf("not found list : %d", id);
@@ -83,34 +75,18 @@ public class App {
             } else if (cmd.startsWith("delete ")) {
                 String[] arr = cmd.split(" ");
                 int id = Integer.parseInt(arr[1]);
-                Article foundArticle = null;
-                int idx = 0;
-                for (int i = 0; i < list.size(); i++) {
-                    Article article = list.get(i);
-                    if (article.id == id) {
-                        foundArticle = article;
-                        idx = i;
-                        break;
-                    }
-                }
+                Article foundArticle = getArticleById(id);
 
                 if (foundArticle == null) {
                     System.out.printf("not found list : %d\n", id);
                 } else {
-                    list.remove(idx);
-                    System.out.printf("delete list : %d\n", idx);
+                    list.remove(foundArticle);
+                    System.out.printf("delete list : %d\n", id);
                 }
             } else if (cmd.startsWith("modify ")) {
                 String[] arr = cmd.split(" ");
                 int id = Integer.parseInt(arr[1]);
-                Article foundArticle = null;
-                for (int i = 0; i < list.size(); i++) {
-                    Article article = list.get(i);
-                    if (article.id == id) {
-                        foundArticle = article;
-                        break;
-                    }
-                }
+                Article foundArticle = getArticleById(id);
 
                 if (foundArticle == null) {
                     System.out.printf("not found list : %d\n", id);
@@ -133,6 +109,28 @@ public class App {
         System.out.println("== 프로그램 끝 ==");
 
         sc.close();
+    }
+
+/*    private static int getArticleIdxById(int id) {
+        int i = 0;
+        for (Article article : list) {
+            if (article.id == id) {
+                return i;
+            }
+            i++;
+        }
+
+        return -1;
+    }*/
+
+    private static Article getArticleById(int id) {
+        for (Article article : list) {
+            if (article.id == id) {
+                return article;
+            }
+        }
+
+        return null;
     }
 
     private static void makeTestData() {
