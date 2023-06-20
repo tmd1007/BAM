@@ -1,8 +1,7 @@
 package com.java.BAM.dto;
 
-public class Article {
-    public int id;
-    public String date;
+public class Article extends Dto {
+
     public String title;
     public String body;
     public int viewCnt;

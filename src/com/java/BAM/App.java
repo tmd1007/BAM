@@ -1,26 +1,23 @@
 package com.java.BAM;
 
-import com.java.BAM.dto.Article;
+import com.java.BAM.controller.ArticleController;
+import com.java.BAM.controller.Controller;
+import com.java.BAM.controller.MemberController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
 
-    private static List<Article> list;
-    private static int articleId;
-
-    App() {
-        list = new ArrayList<>();
-    }
+    private static Scanner sc = new Scanner(System.in);
 
     public static void run() {
         System.out.println("== 프로그램 시작 ==");
 
-        Scanner sc = new Scanner(System.in);
+        MemberController memberController = new MemberController(sc);
+        ArticleController articleController = new ArticleController(sc);
 
-        makeTestData();
+        articleController.makeTestData();
+        memberController.makeTestData();
 
         while (true) {
             System.out.print("cmd)");
@@ -35,75 +32,64 @@ public class App {
                 break;
             }
 
-            if (cmd.equals("list")) {
-                if (list.isEmpty()) {
-                    System.out.println("no list");
-                } else {
-                    System.out.printf("\tID\t\tTITLE\t\tDATE\t\t\tVIEW\n");
-                    for (int i = 0; i < list.size(); i++) {
-                        Article article = list.get(list.size() - 1 - i);
-                        System.out.printf("\t%d\t\t%s\t\t%s\t\t%d\n",
-                                article.id, article.title, article.date, article.viewCnt);
-                    }
-                }
-            } else if (cmd.equals("write")) {
-                int id = ++articleId;
-                System.out.print("title)");
-                String title = sc.nextLine();
-                System.out.print("body)");
-                String body = sc.nextLine();
+            String[] cmdBits = cmd.split(" ");
 
-                list.add(new Article(id, Util.getDate(), title, body));
+            if (cmdBits.length == 1) {
+                System.out.println("not cmd");
+                continue;
+            }
 
-                System.out.printf("save to %dth list\n", id);
-            } else if (cmd.startsWith("detail ")) {
-                String[] arr = cmd.split(" ");
-                int id = Integer.parseInt(arr[1]);
-                Article foundArticle = getArticleById(id);
+            String controllerName = cmdBits[0];
+            String methodName = cmdBits[1];
 
-                if (foundArticle == null) {
-                    System.out.printf("not found list : %d", id);
-                } else {
-                    foundArticle.addViewCnt();
+            Controller controller = null;
 
-                    System.out.printf("ID : %d\n", foundArticle.id);
-                    System.out.printf("DATE : %s\n", foundArticle.date);
-                    System.out.printf("TITLE : %s\n", foundArticle.title);
-                    System.out.printf("BODY : %s\n", foundArticle.body);
-                    System.out.printf("VIEW : %d\n", foundArticle.viewCnt);
-                }
-            } else if (cmd.startsWith("delete ")) {
-                String[] arr = cmd.split(" ");
-                int id = Integer.parseInt(arr[1]);
-                Article foundArticle = getArticleById(id);
+            if (controllerName.equals("member")) {
+                controller = memberController;
+            } else if (controllerName.equals("article")) {
+                controller = articleController;
+            }else {
+                System.out.println("not cmd");
+                continue;
+            }
 
-                if (foundArticle == null) {
-                    System.out.printf("not found list : %d\n", id);
-                } else {
-                    list.remove(foundArticle);
-                    System.out.printf("delete list : %d\n", id);
-                }
-            } else if (cmd.startsWith("modify ")) {
-                String[] arr = cmd.split(" ");
-                int id = Integer.parseInt(arr[1]);
-                Article foundArticle = getArticleById(id);
+            controller.doAction(cmd, methodName);
 
-                if (foundArticle == null) {
-                    System.out.printf("not found list : %d\n", id);
-                } else {
-                    System.out.printf("modify title)");
-                    String title = sc.nextLine();
-                    System.out.printf("modify body)");
-                    String body = sc.nextLine();
-                    foundArticle.title = title;
-                    foundArticle.body = body;
-                    System.out.printf("success modify : %d\n", foundArticle.id);
-                }
+            System.out.println();
+
+
+
+            /*//============================================================
+            // 회원 가입
+            if (cmd.equals("member join")) {
+                memberController.doJoin();
+            }
+            //============================================================
+            // 게시글 검색
+            else if (cmd.startsWith("article list")) {
+                articleController.showList();
+                //============================================================
+                // 게시글 작성
+            } else if (cmd.equals("article write")) {
+                articleController.doWrite();
+                //============================================================
+                // 게시글 열람
+            } else if (cmd.startsWith("article detail ")) {
+                articleController.doDetail();
+                //============================================================
+                // 게시글 삭제
+            } else if (cmd.startsWith("article delete ")) {
+                articleController.doDelete();
+                //============================================================
+                // 게시글 수정
+            } else if (cmd.startsWith("article modify ")) {
+                articleController.doModify();
+                //============================================================
             } else {
                 System.out.println("not cmd");
             }
 
-            System.out.println();
+            System.out.println();*/
         }
 
         System.out.println("== 프로그램 끝 ==");
@@ -111,36 +97,5 @@ public class App {
         sc.close();
     }
 
-/*    private static int getArticleIdxById(int id) {
-        int i = 0;
-        for (Article article : list) {
-            if (article.id == id) {
-                return i;
-            }
-            i++;
-        }
 
-        return -1;
-    }*/
-
-    private static Article getArticleById(int id) {
-        for (Article article : list) {
-            if (article.id == id) {
-                return article;
-            }
-        }
-
-        return null;
-    }
-
-    private static void makeTestData() {
-        for (int i = 1; i <= 3; i++) {
-            String title = "title" + i;
-            String body = "body" + i;
-            Article article = new Article(++articleId, Util.getDate(), title, body);
-            article.viewCnt = i * 10;
-            list.add(article);
-        }
-        System.out.println("testdata update");
-    }
 }
