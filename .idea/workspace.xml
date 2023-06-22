@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82604c9d-0d68-4f54-ac1d-2d1a5eaf2f2e" name="변경" comment="list 순회">
-      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/controller/ArticleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/controller/MemberController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/dto/Dto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/dto/Member.java" afterDir="false" />
+    <list default="true" id="82604c9d-0d68-4f54-ac1d-2d1a5eaf2f2e" name="변경" comment="login logout">
+      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/container/Container.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/dao/ArticleDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/dao/Dao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/dao/MemberDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/service/ArticleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/java/BAM/service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/java/BAM/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/BAM/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/java/BAM/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/BAM/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/java/BAM/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/BAM/controller/ArticleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/java/BAM/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/BAM/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/java/BAM/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/BAM/controller/MemberController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/java/BAM/dto/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/java/BAM/dto/Article.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,13 +42,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "editor.preferences.tabs"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.java.BAM.controller" />
@@ -123,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687156473955</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="login logout">
+      <created>1687251941707</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1687251941707</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -142,6 +152,7 @@
     <MESSAGE value="cmd" />
     <MESSAGE value="detail" />
     <MESSAGE value="list 순회" />
-    <option name="LAST_COMMIT_MESSAGE" value="list 순회" />
+    <MESSAGE value="login logout" />
+    <option name="LAST_COMMIT_MESSAGE" value="login logout" />
   </component>
 </project>

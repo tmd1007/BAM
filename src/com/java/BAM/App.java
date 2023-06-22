@@ -20,6 +20,7 @@ public class App {
         memberController.makeTestData();
 
         while (true) {
+            System.out.println();
             System.out.print("cmd)");
             String cmd = sc.nextLine().trim();
 
@@ -42,6 +43,27 @@ public class App {
             String controllerName = cmdBits[0];
             String methodName = cmdBits[1];
 
+            String actionName = controllerName + "/" + methodName;
+            switch (actionName) {
+                case "article/write" :
+                case "article/modify" :
+                case "article/delete" :
+                case "member/profile" :
+                case "member/logout" :
+                    if (!Controller.isLogined()) {
+                        System.out.println("please Login");
+                        continue;
+                    }
+                    break;
+                case "member/join" :
+                case "member/login" :
+                    if (Controller.isLogined()) {
+                        System.out.println("please Logout");
+                        continue;
+                    }
+                    break;
+            }
+
             Controller controller = null;
 
             if (controllerName.equals("member")) {
@@ -54,42 +76,6 @@ public class App {
             }
 
             controller.doAction(cmd, methodName);
-
-            System.out.println();
-
-
-
-            /*//============================================================
-            // 회원 가입
-            if (cmd.equals("member join")) {
-                memberController.doJoin();
-            }
-            //============================================================
-            // 게시글 검색
-            else if (cmd.startsWith("article list")) {
-                articleController.showList();
-                //============================================================
-                // 게시글 작성
-            } else if (cmd.equals("article write")) {
-                articleController.doWrite();
-                //============================================================
-                // 게시글 열람
-            } else if (cmd.startsWith("article detail ")) {
-                articleController.doDetail();
-                //============================================================
-                // 게시글 삭제
-            } else if (cmd.startsWith("article delete ")) {
-                articleController.doDelete();
-                //============================================================
-                // 게시글 수정
-            } else if (cmd.startsWith("article modify ")) {
-                articleController.doModify();
-                //============================================================
-            } else {
-                System.out.println("not cmd");
-            }
-
-            System.out.println();*/
         }
 
         System.out.println("== 프로그램 끝 ==");
